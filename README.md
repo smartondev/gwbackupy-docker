@@ -1,4 +1,7 @@
-# Docker image fro [gwbackupy](https://github.com/smartondev/gwbackupy)
+# Docker image for [gwbackupy](https://github.com/smartondev/gwbackupy)
+
+This docker container runs scheduled backups of one or more Gmail accounts, including full and fast backups.
+The backup process is based on the open-source software [gwbackupy](https://github.com/smartondev/gwbackupy).
 
 **Under development**
 
