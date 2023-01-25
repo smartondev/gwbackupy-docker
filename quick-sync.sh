@@ -15,6 +15,6 @@ for email in ${GWBACKUPY_ACCOUNT_EMAILS}; do
   if ! $CMD; then
     echo "Quick backup failed for $email"
   else
-    echo -e "\e[32mQuick backup succeeded for $email"
+    echo -e "\e[32mQuick backup succeeded for $email\033[0m"
   fi
 done
