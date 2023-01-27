@@ -66,3 +66,21 @@ Run gwbackupy with custom parameters (e.g. restore):
 ```bash
 docker ... -it exec python -m gwbackupy ...
 ```
+
+## Security
+
+See [SECURITY.md](SECURITY.md)
+
+## Contributing
+
+Welcome! I am happy that you want to make the project better.
+
+Currently, there is no developed documentation for the process, in the meantime, please use issues and pull requests.
+
+## Changelog
+
+The changes are contained in [CHANGELOG.md](CHANGELOG.md).
+
+## About
+
+[Márton Somogyi](https://github.com/Kamarton)
