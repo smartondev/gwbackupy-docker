@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ "$GWBACKUPY_PREPARED" == "yes" ]]; then
+  return 0
+fi
+GWBACKUPY_PREPARED="yes"
+
 if [[ "$GWBACKUPY_ACCOUNT_EMAILS" == "example@example.com example2@example.com" ]]; then
   echo "Please provide GWBACKUPY_ACCOUNT_EMAILS, currently is: $GWBACKUPY_ACCOUNT_EMAILS"
   exit 1

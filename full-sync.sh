@@ -2,7 +2,9 @@
 
 echo "Quick sync starting..."
 
-. "$GWBACKUPY_APPDIR/prepare.sh"
+cd "$GWBACKUPY_APPDIR" || exit 1
+. prepare.sh
+. access-check.sh || exit 1
 
 # currently only for gmail!
 for email in ${GWBACKUPY_ACCOUNT_EMAILS}; do

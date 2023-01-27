@@ -32,11 +32,15 @@ The backup process is based on the open-source software [gwbackupy](https://gith
 
 ## Scripts
 
-- `access-init.sh`: initializes authentication if required
+- `access-init.sh`: script for start initialize authentication (use first time and if auth changes)
   ```bash
-  docker run ... exec /bin/bash access-init.sh
+  docker ... -it exec /bin/bash access-init.sh
   ```
-- `entrypoint.sh`: check authentication status, and if is ok, then starts crond (default script)
-- `quick-sync.sh`: quick backup
-- `full-sync.sh`: full backup
+- `entrypoint.sh`: check authentication status, and if is ok, then starts crond (default script) and schedule backups
+- `quick-sync.sh`: script for start quick backup
+- `full-sync.sh`: script for start full backup 
 
+Run gwbackupy with custom parameters (e.g. restore):
+```bash
+docker ... -it exec python -m gwbackupy ...
+```

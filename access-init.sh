@@ -2,7 +2,7 @@
 
 . prepare.sh
 
-echo "Checking access..."
+echo "Initialize and check authentication..."
 for email in ${GWBACKUPY_ACCOUNT_EMAILS}; do
   for service in ${GWBACKUPY_SERVICES}; do
     echo "Checking $email for $service..."

@@ -30,4 +30,5 @@ COPY ./quick-sync.sh ${GWBACKUPY_APPDIR}/
 COPY ./entrypoint.sh ${GWBACKUPY_APPDIR}/
 COPY ./prepare.sh ${GWBACKUPY_APPDIR}/
 COPY ./access-init.sh ${GWBACKUPY_APPDIR}/
+COPY ./access-check.sh ${GWBACKUPY_APPDIR}/
 CMD ["/bin/bash", "entrypoint.sh"]
