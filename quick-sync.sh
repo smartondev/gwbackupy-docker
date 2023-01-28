@@ -1,22 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "Quick sync starting..."
 
 cd "$GWBACKUPY_APPDIR" || exit 1
 . prepare.sh
-. access-check.sh || exit 1
 
 if [[ "$GWBACKUPY_QUICK_SYNC_DAYS" != "" ]]; then
   GWBACKUPY_GMAIL_ARGS="--quick-sync-days=$GWBACKUPY_QUICK_SYNC_DAYS $GWBACKUPY_GMAIL_ARGS"
 fi
 
-# currently only for gmail!
+ERROR=0
 for email in ${GWBACKUPY_ACCOUNT_EMAILS}; do
-  CMD="python -m gwbackupy $GWBACKUPY_MAIN_ARGS gmail backup --email=$email $GWBACKUPY_GMAIL_ARGS"
-  echo "Run: $CMD"
-  if ! $CMD; then
-    echo "Quick backup failed for $email"
+  # currently only for gmail!
+  service="gmail"
+
+  . access-check.sh "$email" "$service"
+  if [ $? -eq 0 ]; then
+    python -m gwbackupy $GWBACKUPY_MAIN_ARGS gmail backup --email=$email $GWBACKUPY_GMAIL_ARGS
+    if [ $? -eq 0 ]; then
+      echo "Quick backup succeeded for $email"
+    else
+      echo "Quick backup failed for $email ($service, run backup)"
+      ERROR=1
+    fi
   else
-    echo -e "\e[32mQuick backup succeeded for $email\033[0m"
+    echo "Quick backup failed for $email ($service, access check)"
+    ERROR=1
   fi
 done
+
+exit $ERROR

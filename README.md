@@ -7,16 +7,18 @@ The backup process is based on the open-source software [gwbackupy](https://gith
 
 ## Overview
 
-
 ## OAuth challenge
 
 If docker host with desktop UI:
+
 ```
 container PORT -> docker -> host PORT -> browser -> redirect --\
                                                                |
 container PORT <- docker <- host PORT <------------------------/
 ```
+
 If docker host is in terminal only context:
+
 ```
 container PORT -> docker -> host PORT -> public or local network IP -> wait
                                                                         -> open link in browser -> redirect --\
@@ -24,7 +26,7 @@ container PORT -> docker -> host PORT -> public or local network IP -> wait
 container PORT <- docker <- host PORT <- public or local network IP <-----------------------------------------/
 ```
 
-Port, bind host, redirect host are set with `GWBACKUPY_OAUTH_PORT`, `GWBACKUPY_OAUTH_BIND_ADDRESS` 
+Port, bind host, redirect host are set with `GWBACKUPY_OAUTH_PORT`, `GWBACKUPY_OAUTH_BIND_ADDRESS`
 and `GWBACKUPY_OAUTH_REDIRECT_HOST` environment variables.
 
 If the redirect host is a hostname, it must be a public hostname and must be added to the OAuth configuration.
@@ -49,20 +51,24 @@ If the redirect host is a hostname, it must be a public hostname and must be add
 | `GWBACKUPY_OAUTH_PORT`                   | `43339`                                    |                                                |
 | `GWBACKUPY_OAUTH_BIND_ADDRESS`           | `0.0.0.0`                                  |                                                |
 | `GWBACKUPY_QUICK_SYNC_DAYS`              | `7`                                        |                                                |
+| `TZ`                                     | ` `                                        | timezone settings from alpine docker           |
 
 ## Scripts
 
 - `entrypoint.sh`: check authentication status, and if is ok, then starts crond (default script) and schedule
   full and quick backups
 - `quick-sync.sh`: script for start quick backup
-- `full-sync.sh`: script for start full backup 
+- `full-sync.sh`: script for start full backup
 - `access-init.sh`: script for start initialize authentication (use first time and if auth changes)
   ```bash
   docker ... -it exec /bin/bash access-init.sh
   ```
 - `access-check.sh`: script for authentication states checking
+  - `access-check.sh <email(s)>`: run checks for email addresses
+  - `access-check.sh <email(s)> <service(s)>`: run checks for specified services and email addresses
 
 Run gwbackupy with custom parameters (e.g. restore):
+
 ```bash
 docker ... -it exec python -m gwbackupy ...
 ```

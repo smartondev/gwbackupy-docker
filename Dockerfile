@@ -2,7 +2,7 @@ FROM python:3-alpine
 
 #RUN pip install --no-cache-dir gwbackupy
 RUN pip install --no-cache-dir https://github.com/smartondev/gwbackupy/archive/main.zip
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash tzdata
 
 ENV GWBACKUPY_WORKDIR="/data"
 ENV GWBACKUPY_APPDIR="/app"
