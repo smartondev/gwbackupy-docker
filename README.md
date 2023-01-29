@@ -20,10 +20,10 @@ container PORT <- docker <- host PORT <------------------------/
 If docker host is in terminal only context:
 
 ```
-container PORT -> docker -> host PORT -> public or local network IP -> wait
-                                                                        -> open link in browser -> redirect --\
-                                                                                                              |
-container PORT <- docker <- host PORT <- public or local network IP <-----------------------------------------/
+container PORT -> docker -> host PORT -> public or local network IP -> wait for operator
+                                                                          -> operator -> open link in browser -> redirect --\
+                                                                                                                            |
+container PORT <- docker <- host PORT <- public or local network IP <-------------------------------------------------------/
 ```
 
 Port, bind host, redirect host are set with `GWBACKUPY_OAUTH_PORT`, `GWBACKUPY_OAUTH_BIND_ADDRESS`
