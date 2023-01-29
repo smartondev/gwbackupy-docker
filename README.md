@@ -40,7 +40,7 @@ If the redirect host is a hostname, it must be a public hostname and must be add
 | `GWBACKUPY_ACCOUNT_EMAILS`               | `example@example.com example2@example.com` | Email accounts, space separated list                                                                              |
 | `GWBACKUPY_CRON_FULL_SYNC`               | `0 0 * * 0`                                | Cron's pattern to full backup. If empty, it will be turned off. By default, it runs every Monday at 0 AM.         |
 | `GWBACKUPY_CRON_QUICK_SYNC`              | `0 *12 * * *`                              | Cron's pattern to quick backup. If empty, it will be turned off. By default, it runs every day at 0 and 12 hours. |
-| `GWBACKUPY_CRON_LOG`                     | `${GWBACKUPY_APPDIR}/crontab.log`          |                                                                                                                   |
+| `GWBACKUPY_CRON_LOG`                     | `${GWBACKUPY_WORKDIR}/logs/crontab.log`    |                                                                                                                   |
 | `GWBACKUPY_CRONTAB`                      | `${GWBACKUPY_APPDIR}/crontab`              |                                                                                                                   |
 | `GWBACKUPY_CRON_FLOCK_FILEPATH`          | `/var/lock/gwbackupy-cron.lock`            | Filepath of cron's `flock`                                                                                        |
 | `GWBACKUPY_LOG_LEVEL`                    | `warning`                                  | see more `--log-level` parameter                                                                                  |
@@ -54,8 +54,8 @@ If the redirect host is a hostname, it must be a public hostname and must be add
 | `GWBACKUPY_QUICK_SYNC_DAYS`              | `7`                                        |                                                                                                                   |
 | `TZ`                                     | ` `                                        | timezone settings from alpine docker                                                                              |
 
-The full and quick backup do not run simultaneously. 
-If a quick backup is already running, a new instance of the quick backup will not be started. 
+The full and quick backup do not run simultaneously.
+If a quick backup is already running, a new instance of the quick backup will not be started.
 The full backup will wait for the currently running process to finish and then start.
 
 ## Scripts
