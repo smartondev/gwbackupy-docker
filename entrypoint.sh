@@ -19,7 +19,7 @@ EOF
 
 # setup crons
 touch "${GWBACKUPY_CRON_LOG}"
-echo "* * * * * /usr/bin/flock ${GWBACKUPY_CRON_FLOCK_FILEPATH} logrotate -f ${LOGROTATE_CONF}" >>"${GWBACKUPY_CRONTAB}"
+echo "13 3 * * * /usr/bin/flock ${GWBACKUPY_CRON_FLOCK_FILEPATH} logrotate -f ${LOGROTATE_CONF}" >>"${GWBACKUPY_CRONTAB}"
 if [[ "$GWBACKUPY_CRON_FULL_SYNC" != "" ]]; then
   echo "$GWBACKUPY_CRON_FULL_SYNC /usr/bin/flock ${GWBACKUPY_CRON_FLOCK_FILEPATH} /bin/bash ${GWBACKUPY_APPDIR}/logcmd.sh ${GWBACKUPY_APPDIR}/sync.sh >> ${GWBACKUPY_CRON_LOG} 2>&1" >>"${GWBACKUPY_CRONTAB}"
 fi
