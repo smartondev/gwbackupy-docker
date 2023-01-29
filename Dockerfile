@@ -2,14 +2,15 @@ FROM python:3-alpine
 
 #RUN pip install --no-cache-dir gwbackupy
 RUN pip install --no-cache-dir https://github.com/smartondev/gwbackupy/archive/main.zip
-RUN apk add --no-cache bash tzdata
+RUN apk add --no-cache bash tzdata logrotate
 
 ENV GWBACKUPY_WORKDIR="/data"
 ENV GWBACKUPY_APPDIR="/app"
 ENV GWBACKUPY_ACCOUNT_EMAILS="example@example.com example2@example.com"
 ENV GWBACKUPY_CRON_FULL_SYNC="0 0 * * 0"
-ENV GWBACKUPY_CRON_QUICK_SYNC="0 0 * * 1-6"
+ENV GWBACKUPY_CRON_QUICK_SYNC="0 *12 * * *"
 ENV GWBACKUPY_CRON_LOG="${GWBACKUPY_APPDIR}/crontab.log"
+ENV GWBACKUPY_CRON_FLOCK_FILEPATH="/var/lock/gwbackupy-cron.lock"
 ENV GWBACKUPY_CRONTAB="${GWBACKUPY_APPDIR}/crontab"
 ENV GWBACKUPY_LOG_LEVEL="warning"
 ENV GWBACKUPY_CREDENTIALS_FILEPATH=""
@@ -25,10 +26,11 @@ ENV GWBACKUPY_GMAIL_ARGS=""
 
 VOLUME ${GWBACKUPY_WORKDIR}
 WORKDIR ${GWBACKUPY_APPDIR}
-COPY ./full-sync.sh ${GWBACKUPY_APPDIR}/
-COPY ./quick-sync.sh ${GWBACKUPY_APPDIR}/
-COPY ./entrypoint.sh ${GWBACKUPY_APPDIR}/
-COPY ./prepare.sh ${GWBACKUPY_APPDIR}/
-COPY ./access-init.sh ${GWBACKUPY_APPDIR}/
-COPY ./access-check.sh ${GWBACKUPY_APPDIR}/
+COPY sync.sh ${GWBACKUPY_APPDIR}/
+COPY quick-sync.sh ${GWBACKUPY_APPDIR}/
+COPY entrypoint.sh ${GWBACKUPY_APPDIR}/
+COPY prepare.sh ${GWBACKUPY_APPDIR}/
+COPY access-init.sh ${GWBACKUPY_APPDIR}/
+COPY access-check.sh ${GWBACKUPY_APPDIR}/
+COPY logcmd.sh ${GWBACKUPY_APPDIR}/
 CMD ["/bin/bash", "entrypoint.sh"]
