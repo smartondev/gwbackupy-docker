@@ -1,14 +1,16 @@
 FROM python:3-alpine
 
-#RUN pip install --no-cache-dir gwbackupy
-RUN pip install --no-cache-dir https://github.com/smartondev/gwbackupy/archive/main.zip
 RUN apk add --no-cache bash tzdata logrotate
+
+ENV GWBACKUPY_PIP_PACKAGE="gwbackupy"
+ENV GWBACKUPY_PIP_VERSION="~=0.10"
+RUN pip install --no-cache-dir ${GWBACKUPY_PIP_PACKAGE}${GWBACKUPY_PIP_VERSION}
 
 ENV GWBACKUPY_WORKDIR="/data"
 ENV GWBACKUPY_APPDIR="/app"
 ENV GWBACKUPY_ACCOUNT_EMAILS="example@example.com example2@example.com"
 ENV GWBACKUPY_CRON_FULL_SYNC="0 0 * * 0"
-ENV GWBACKUPY_CRON_QUICK_SYNC="0 *12 * * *"
+ENV GWBACKUPY_CRON_QUICK_SYNC="0 */12 * * *"
 ENV GWBACKUPY_CRON_LOG="${GWBACKUPY_WORKDIR}/logs/crontab.log"
 ENV GWBACKUPY_CRON_FLOCK_FILEPATH="/var/lock/gwbackupy-cron.lock"
 ENV GWBACKUPY_CRONTAB="${GWBACKUPY_APPDIR}/crontab"

@@ -33,30 +33,37 @@ If the redirect host is a hostname, it must be a public hostname and must be add
 
 ## Container environment parameters
 
-| Env name                                 | Default value                              | Description                                                                                                       |
-|------------------------------------------|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `GWBACKUPY_WORKDIR`                      | `/data`                                    | Data directory, see more `--workdir` parameter                                                                    |
-| `GWBACKUPY_APPDIR`                       | `/app`                                     |                                                                                                                   |
-| `GWBACKUPY_ACCOUNT_EMAILS`               | `example@example.com example2@example.com` | Email accounts, space separated list                                                                              |
-| `GWBACKUPY_CRON_FULL_SYNC`               | `0 0 * * 0`                                | Cron's pattern to full backup. If empty, it will be turned off. By default, it runs every Monday at 0 AM.         |
-| `GWBACKUPY_CRON_QUICK_SYNC`              | `0 */12 * * *`                             | Cron's pattern to quick backup. If empty, it will be turned off. By default, it runs every day at 0 and 12 hours. |
-| `GWBACKUPY_CRON_LOG`                     | `${GWBACKUPY_WORKDIR}/logs/crontab.log`    |                                                                                                                   |
-| `GWBACKUPY_CRONTAB`                      | `${GWBACKUPY_APPDIR}/crontab`              |                                                                                                                   |
-| `GWBACKUPY_CRON_FLOCK_FILEPATH`          | `/var/lock/gwbackupy-cron.lock`            | Filepath of cron's `flock`                                                                                        |
-| `GWBACKUPY_LOG_LEVEL`                    | `warning`                                  | see more `--log-level` parameter                                                                                  |
-| `GWBACKUPY_CREDENTIALS_FILEPATH`         | ` `                                        |                                                                                                                   |
-| `GWBACKUPY_SERVICE_ACCOUNT_KEY_FILEPATH` | ` `                                        |                                                                                                                   |
-| `GWBACKUPY_MAIN_ARGS`                    | ` `                                        |                                                                                                                   |
-| `GWBACKUPY_SERVICES`                     | `gmail`                                    | Services for backup, currently `gmail` only                                                                       |
-| `GWBACKUPY_OAUTH_REDIRECT_HOST`          | `localhost`                                |                                                                                                                   |
-| `GWBACKUPY_OAUTH_PORT`                   | `43339`                                    |                                                                                                                   |
-| `GWBACKUPY_OAUTH_BIND_ADDRESS`           | `0.0.0.0`                                  |                                                                                                                   |
-| `GWBACKUPY_QUICK_SYNC_DAYS`              | `7`                                        |                                                                                                                   |
-| `TZ`                                     | ` `                                        | timezone settings from alpine docker                                                                              |
+| Env name                                 | Default value                              | Description                                                                                                                 |
+|------------------------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `GWBACKUPY_PIP_VERSION`                  | `~=0.10`                                   | The version of gwbackupy for installation. The version specification should be understood according to pip install.         |
+| `GWBACKUPY_PIP_PACKAGE`                  | `gwbackupy`                                | The package name of gwbackupy for installation. Either the pip package name or direct zip access can be specified, see pip. |
+| `GWBACKUPY_WORKDIR`                      | `/data`                                    | Data directory, see more `--workdir` parameter                                                                              |
+| `GWBACKUPY_APPDIR`                       | `/app`                                     |                                                                                                                             |
+| `GWBACKUPY_ACCOUNT_EMAILS`               | `example@example.com example2@example.com` | Email accounts, space separated list                                                                                        |
+| `GWBACKUPY_CRON_FULL_SYNC`               | `0 0 * * 0`                                | Cron's pattern to full backup. If empty, it will be turned off. By default, it runs every Monday at 0 AM.                   |
+| `GWBACKUPY_CRON_QUICK_SYNC`              | `0 */12 * * *`                             | Cron's pattern to quick backup. If empty, it will be turned off. By default, it runs every day at 0 and 12 hours.           |
+| `GWBACKUPY_CRON_LOG`                     | `${GWBACKUPY_WORKDIR}/logs/crontab.log`    |                                                                                                                             |
+| `GWBACKUPY_CRONTAB`                      | `${GWBACKUPY_APPDIR}/crontab`              |                                                                                                                             |
+| `GWBACKUPY_CRON_FLOCK_FILEPATH`          | `/var/lock/gwbackupy-cron.lock`            | Filepath of cron's `flock`                                                                                                  |
+| `GWBACKUPY_LOG_LEVEL`                    | `warning`                                  | see more `--log-level` parameter                                                                                            |
+| `GWBACKUPY_CREDENTIALS_FILEPATH`         | ` `                                        |                                                                                                                             |
+| `GWBACKUPY_SERVICE_ACCOUNT_KEY_FILEPATH` | ` `                                        |                                                                                                                             |
+| `GWBACKUPY_MAIN_ARGS`                    | ` `                                        |                                                                                                                             |
+| `GWBACKUPY_SERVICES`                     | `gmail`                                    | Services for backup, currently `gmail` only                                                                                 |
+| `GWBACKUPY_OAUTH_REDIRECT_HOST`          | `localhost`                                |                                                                                                                             |
+| `GWBACKUPY_OAUTH_PORT`                   | `43339`                                    |                                                                                                                             |
+| `GWBACKUPY_OAUTH_BIND_ADDRESS`           | `0.0.0.0`                                  |                                                                                                                             |
+| `GWBACKUPY_QUICK_SYNC_DAYS`              | `7`                                        |                                                                                                                             |
+| `TZ`                                     | ` `                                        | timezone settings from alpine docker                                                                                        |
 
 The full and quick backup do not run simultaneously.
 If a quick backup is already running, a new instance of the quick backup will not be started.
 The full backup will wait for the currently running process to finish and then start.
+
+For install dev master (main) use these environment variables:
+
+- `GWBACKUPY_PIP_VERSION=""`
+- `GWBACKUPY_PIP_PACKAGE="https://github.com/smartondev/gwbackupy/archive/main.zip"`
 
 ## Scripts
 
