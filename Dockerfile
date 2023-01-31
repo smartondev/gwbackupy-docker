@@ -2,8 +2,8 @@ FROM python:3-alpine
 
 RUN apk add --no-cache bash tzdata logrotate
 
-ENV GWBACKUPY_PIP_PACKAGE="gwbackupy"
-ENV GWBACKUPY_PIP_VERSION="~=0.10"
+ARG GWBACKUPY_PIP_PACKAGE="gwbackupy"
+ARG GWBACKUPY_PIP_VERSION=""
 RUN pip install --no-cache-dir ${GWBACKUPY_PIP_PACKAGE}${GWBACKUPY_PIP_VERSION}
 
 ENV GWBACKUPY_WORKDIR="/data"
