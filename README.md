@@ -64,7 +64,7 @@ It is possible to specify the name/location and version of the gwbackupy downloa
 
 | Env name                | Default value | Description                                                                                                                                            |
 |-------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `GWBACKUPY_PIP_VERSION` | `~=0.10`      | The version of gwbackupy for installation (default is latest version by pip). The version specification should be understood according to pip install. |
+| `GWBACKUPY_PIP_VERSION` | ` `           | The version of gwbackupy for installation (default is latest version by pip). The version specification should be understood according to pip install. |
 | `GWBACKUPY_PIP_PACKAGE` | `gwbackupy`   | The package name of gwbackupy for installation. Either the pip package name or direct zip access can be specified, see pip.                            |
 
 For build a specific version of gwbackupy use this argument:
