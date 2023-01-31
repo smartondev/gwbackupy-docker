@@ -35,4 +35,11 @@ COPY prepare.sh ${GWBACKUPY_APPDIR}/
 COPY access-init.sh ${GWBACKUPY_APPDIR}/
 COPY access-check.sh ${GWBACKUPY_APPDIR}/
 COPY logcmd.sh ${GWBACKUPY_APPDIR}/
+RUN chmod +x "${GWBACKUPY_APPDIR}/sync.sh"
+RUN chmod +x "${GWBACKUPY_APPDIR}/quick-sync.sh"
+RUN chmod +x "${GWBACKUPY_APPDIR}/entrypoint.sh"
+RUN chmod +x "${GWBACKUPY_APPDIR}/prepare.sh"
+RUN chmod +x "${GWBACKUPY_APPDIR}/access-init.sh"
+RUN chmod +x "${GWBACKUPY_APPDIR}/access-check.sh"
+RUN chmod +x "${GWBACKUPY_APPDIR}/logcmd.sh"
 CMD ["/bin/bash", "entrypoint.sh"]
