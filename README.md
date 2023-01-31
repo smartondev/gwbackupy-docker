@@ -83,6 +83,8 @@ For build image with dev master (main) use this argument:
 docker build --build-arg GWBACKUPY_PIP_PACKAGE="https://github.com/smartondev/gwbackupy/archive/main.zip" -t gwbackupy-devmaster ./
 ```
 
+*Please note that the given docker image may not be compatible with all versions of gwbackupy.*
+
 ## Scripts
 
 - `entrypoint.sh`: check authentication status, and if is ok, then starts crond (default script) and schedule
