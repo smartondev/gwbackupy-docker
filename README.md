@@ -37,10 +37,12 @@ If the redirect host is a hostname, it must be a public hostname and must be add
 |------------------------------------------|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
 | `GWBACKUPY_WORKDIR`                      | `/data`                                    | Data directory, see more `--workdir` parameter                                                                    |
 | `GWBACKUPY_APPDIR`                       | `/app`                                     |                                                                                                                   |
+| `GWBACKUPY_LOGDIR`                       | `${GWBACKUPY_WORKDIR}/logs`                |                                                                                                                   |
+| `GWBACKUPY_TEMPDIR`                      | `/tmp`                                     |                                                                                                                   |
 | `GWBACKUPY_ACCOUNT_EMAILS`               | `example@example.com example2@example.com` | Email accounts, space separated list                                                                              |
 | `GWBACKUPY_CRON_FULL_SYNC`               | `0 0 * * 0`                                | Cron's pattern to full backup. If empty, it will be turned off. By default, it runs every Monday at 0 AM.         |
 | `GWBACKUPY_CRON_QUICK_SYNC`              | `0 */12 * * *`                             | Cron's pattern to quick backup. If empty, it will be turned off. By default, it runs every day at 0 and 12 hours. |
-| `GWBACKUPY_CRON_LOG`                     | `${GWBACKUPY_WORKDIR}/logs/crontab.log`    |                                                                                                                   |
+| `GWBACKUPY_CRON_LOG`                     | `${GWBACKUPY_LOGDIR}/crontab.log`          |                                                                                                                   |
 | `GWBACKUPY_CRONTAB`                      | `${GWBACKUPY_APPDIR}/crontab`              |                                                                                                                   |
 | `GWBACKUPY_CRON_FLOCK_FILEPATH`          | `/var/lock/gwbackupy-cron.lock`            | Filepath of cron's `flock`                                                                                        |
 | `GWBACKUPY_LOG_LEVEL`                    | `warning`                                  | see more `--log-level` parameter                                                                                  |

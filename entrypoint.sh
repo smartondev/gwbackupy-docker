@@ -2,7 +2,10 @@
 
 echo "Container starting..."
 . prepare.sh
-. access-check.sh "${GWBACKUPY_ACCOUNT_EMAILS}" "${GWBACKUPY_SERVICES}" || . access-init.sh
+. access-init.sh
+
+mkdir -p "${GWBACKUPY_TEMPDIR}"
+mkdir -p "${GWBACKUPY_LOGDIR}"
 
 # setup logrotate
 LOGROTATE_CONF="${GWBACKUPY_APPDIR}/logrotate.conf"
@@ -18,7 +21,6 @@ ${GWBACKUPY_CRON_LOG} {
 EOF
 
 # setup crons
-mkdir -p "$(dirname "$GWBACKUPY_CRON_LOG")"
 touch "${GWBACKUPY_CRON_LOG}"
 echo "13 * * * * /usr/bin/flock ${GWBACKUPY_CRON_FLOCK_FILEPATH} logrotate -f ${LOGROTATE_CONF}" >>"${GWBACKUPY_CRONTAB}"
 if [[ "$GWBACKUPY_CRON_FULL_SYNC" != "" ]]; then

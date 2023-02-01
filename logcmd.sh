@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TEMPFILE=$(mktemp /tmp/tempfile.XXXXXX)
+TEMPFILE=$(mktemp "${GWBACKUPY_TEMPDIR}/log.XXXXXX")
 touch $TEMPFILE
 
 $1 2>&1 | tee $TEMPFILE
