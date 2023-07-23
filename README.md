@@ -50,7 +50,7 @@ If the redirect host is a hostname, it must be a public hostname and must be add
 | `GWBACKUPY_SERVICE_ACCOUNT_KEY_FILEPATH` | ` `                                        |                                                                                                                   |
 | `GWBACKUPY_MAIN_ARGS`                    | ` `                                        |                                                                                                                   |
 | `GWBACKUPY_SERVICES`                     | `gmail`                                    | Services for backup, currently `gmail` only                                                                       |
-| `GWBACKUPY_OAUTH_REDIRECT_HOST`          | `localhost`                                |                                                                                                                   |
+| `GWBACKUPY_OAUTH_REDIRECT_HOST`          | `127.0.0.1`                                |                                                                                                                   |
 | `GWBACKUPY_OAUTH_PORT`                   | `43339`                                    |                                                                                                                   |
 | `GWBACKUPY_OAUTH_BIND_ADDRESS`           | `0.0.0.0`                                  |                                                                                                                   |
 | `GWBACKUPY_QUICK_SYNC_DAYS`              | `7`                                        |                                                                                                                   |
